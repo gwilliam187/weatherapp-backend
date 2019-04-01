@@ -5,10 +5,10 @@ import UserInput from './UserInput';
 class UserContainer extends Component {
 	render() {
 		return(
-			<div className='col-3 UserContainer'>
+			<div className='col-lg-3 UserContainer'>
 				<div className='card'>
 					<div className='card-body'>
-						<h5 className='card-title'>Users</h5>
+						<h4 className='card-title'>Users</h4>
 						<UserInput />
 						<label>All Users</label>
 						<div className='list-group'>

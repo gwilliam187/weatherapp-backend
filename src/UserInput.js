@@ -7,7 +7,10 @@ class UserInput extends Component {
 				<label>Add User</label>
 				<div className='d-flex'>
 					<input type='text' className='form-control mr-2' />
-					<button className=''>+</button>
+					<button 
+							className='btn btn-primary fw-40'>
+						<i className='fas fa-plus text-white'></i>
+					</button>
 				</div>
 			</div>
 		)
