@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class CityTableRow extends Component {
 	state = {
 		isEditing: false,
-		idVal: 'Berlin, de',
-		cityNameVal: 'Berlin'
+		idVal: this.props.id,
+		cityNameVal: this.props.cityName
 	};
 
 	handleSwitchToEditButton = () => {
@@ -34,8 +34,8 @@ class CityTableRow extends Component {
 	renderViewRow() {
 		return (
 			<tr className='d-flex'>
-				<td className='col-3 d-flex align-items-center'>Berlin,de</td>
-				<td className='col-7 d-flex align-items-center'>Berlin</td>
+				<td className='col-3 d-flex align-items-center'>{ this.props.id }</td>
+				<td className='col-7 d-flex align-items-center'>{ this.props.cityName }</td>
 				<td className='col-2 d-flex justify-content-end'>
 					<button 
 							onClick={ this.handleSwitchToEditButton }
