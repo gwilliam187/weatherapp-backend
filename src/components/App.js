@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from '../functions/couchFunctions';
 
 import Home from './Home';
+import CityRevsPage from './CityRevsPage';
 
 class App extends Component {
   componentDidMount(){
@@ -20,6 +21,7 @@ class App extends Component {
       <BrowserRouter>
       	<Switch>
 	        <Route exact path='/' component={ Home } />
+          <Route path='/cityRevs/:id' component={ CityRevsPage } />
        	</Switch>
       </BrowserRouter>
     );
