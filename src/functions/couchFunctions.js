@@ -1,4 +1,7 @@
 import NodeCouchDb from 'node-couchdb';
+import axios from 'axios';
+
+import { loadUsers } from '../actions/loadUserAction'
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -11,6 +14,16 @@ const couch = new NodeCouchDb({
         password : 'password'
     }
 })
+
+export const viewAllUsers = async()=>{
+    await axios.get("http://"+couch_ip_addr+":5984/_all_dbs").then((res)=>{
+            res.data.map((d)=>{
+                if  (d.charAt(0)!=='_')
+                    loadUsers(d);
+            })
+        }
+    )
+}
 
 export const addUser = (userName)=>{
     couch.createDatabase(userName).then(()=>{

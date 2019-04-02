@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from './functions/couchFunctions';
+import { viewAllUsers, addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from '../functions/couchFunctions';
 
 import Home from './Home';
 
 class App extends Component {
   componentDidMount(){
+    viewAllUsers();
     //addUser("peter_peter");
     //removeUser("peter_peter")
     //viewUserCities("steven_klarens")
