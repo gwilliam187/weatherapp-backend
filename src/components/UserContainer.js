@@ -3,8 +3,13 @@ import { connect } from 'react-redux';
 
 import UserInputContainer from './UserInputContainer';
 import UserButton from './UserButton';
+import {viewAllUsers} from '../actions/couchActions';
 
 class UserContainer extends Component {
+	componentDidMount(){
+		this.props.viewAllUsers();
+	}
+
 	renderUserButtons() {
 		if(this.props.users.length > 0) {
 			return this.props.users.map(user => {
@@ -39,4 +44,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, null)(UserContainer);
+export default connect(mapStateToProps, {viewAllUsers})(UserContainer);

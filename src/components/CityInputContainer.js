@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addCityToUser } from '../actions/couchActions';
 
 class CityInputContainer extends Component {
 	state = {
@@ -29,6 +31,7 @@ class CityInputContainer extends Component {
 		if(this.state.idVal !== '' && this.state.cityNameVal !== '') {
 			console.log(`add city (${ this.state.idVal }) ${ this.state.cityNameVal }`);
 			this.setState({ idVal: '', cityNameVal: '' });
+			addCityToUser()
 		}
 	};
 
@@ -64,4 +67,4 @@ class CityInputContainer extends Component {
 	}
 }
 
-export default CityInputContainer;
+export default connect(null) (CityInputContainer);

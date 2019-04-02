@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CityInputContainer from './CityInputContainer';
 import CityTableRow from './CityTableRow';
+import {viewUserCities} from  '../actions/couchActions';
 
 class CityContainer extends Component {
 	componentDidMount() {
@@ -43,7 +44,8 @@ class CityContainer extends Component {
 									</tr>
 								</thead>
 								<tbody>
-									{ this.renderCities() }
+									{ /*this.renderCities()*/ }
+									<CityTableRow />
 								</tbody>
 							</table>
 						</div>
@@ -63,8 +65,8 @@ class CityContainer extends Component {
 const mapStateToProps = state => {
 	return {
 		selectedUser: state.selectedUser,
-		cities: state.cities
+		cities: state.userCities
 	};
 };
 
-export default connect(mapStateToProps, null)(CityContainer);
+export default connect(mapStateToProps, {viewUserCities})(CityContainer);

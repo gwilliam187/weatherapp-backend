@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from '../functions/couchFunctions';
+import { viewAllUsers, addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from '../actions/couchActions';
 
 import Home from './Home';
 import CityRevsPage from './CityRevsPage';
 
 class App extends Component {
   componentDidMount(){
+    //this.props.viewAllUsers();
     //addUser("peter_peter");
     //removeUser("peter_peter")
     //viewUserCities("steven_klarens")
@@ -28,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, {viewAllUsers}) (App);

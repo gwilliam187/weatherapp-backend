@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addUser } from '../actions/couchActions';
 
 class UserInputContainer extends Component {
 	state = {
@@ -7,17 +9,18 @@ class UserInputContainer extends Component {
 
 	handleOnKeyDown = e => {
 		if(e.key === 'Enter') {
-			this.addUser();
+			this.props.addUser();
 		}
 	};
 
 	handleOnChange = e => { this.setState({ value: e.target.value.trim() }) };
 
-	handleOnClick = e => { this.addUser() };
+	handleOnClick = e => { this.add() };
 
 	// TODO: Implement this
-	addUser = () => {
+	add = () => {
 		if(this.state.value !== '') {
+			this.props.addUser(this.state.value)
 			console.log(`add user "${ this.state.value }"`);
 			this.setState({ value: '' });
 		}
@@ -45,4 +48,4 @@ class UserInputContainer extends Component {
 	}
 }
 
-export default UserInputContainer;
+export default connect(null, {addUser}) (UserInputContainer);
