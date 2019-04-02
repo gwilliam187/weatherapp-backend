@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from './functions/couchFunctions';
+import { addUser, removeUser, viewUserCities, removeCityFromUser, addCityToUser, updateCityToUser } from '../functions/couchFunctions';
 
 import Home from './Home';
 
