@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import UserInputContainer from './UserInputContainer';
 import UserButton from './UserButton';
+import {viewAllUsers} from '../actions/couchActions';
 
 class UserContainer extends Component {
+	componentDidMount(){
+		this.props.viewAllUsers();
+	}
+
+	renderUserButtons() {
+		if(this.props.users.length > 0) {
+			return this.props.users.map(user => {
+				return <UserButton username={ user } key={ user } />;
+			});
+		} else {
+			return <div>No users</div>
+		}
+	}
+
 	render() {
 		return(
 			<div className='col-lg-3 UserContainer'>
@@ -13,8 +29,7 @@ class UserContainer extends Component {
 						<UserInputContainer />
 						<label>All Users</label>
 						<div className='list-group'>
-							<UserButton username='steven_klarens' />
-							<UserButton username='wowowi' />
+							{ this.renderUserButtons() }
 						</div>
 					</div>
 				</div>
@@ -23,4 +38,10 @@ class UserContainer extends Component {
 	}
 }
 
-export default UserContainer;
+const mapStateToProps = state => {
+	return {
+		users: state.users
+	};
+};
+
+export default connect(mapStateToProps, {viewAllUsers})(UserContainer);

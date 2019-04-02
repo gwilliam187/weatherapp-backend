@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../functions/couchFunctions';
+import { addUser } from '../actions/couchActions';
 
 class UserInputContainer extends Component {
 	state = {
@@ -9,7 +9,7 @@ class UserInputContainer extends Component {
 
 	handleOnKeyDown = e => {
 		if(e.key === 'Enter') {
-			this.addUser();
+			this.props.addUser();
 		}
 	};
 
@@ -20,8 +20,8 @@ class UserInputContainer extends Component {
 	// TODO: Implement this
 	add = () => {
 		if(this.state.value !== '') {
+			this.props.addUser(this.state.value)
 			console.log(`add user "${ this.state.value }"`);
-			addUser(this.state.value)
 			this.setState({ value: '' });
 		}
 	}
@@ -48,4 +48,4 @@ class UserInputContainer extends Component {
 	}
 }
 
-export default UserInputContainer;
+export default connect(null, {addUser}) (UserInputContainer);

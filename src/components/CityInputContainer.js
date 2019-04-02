@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCityToUser } from '../functions/couchFunctions';
+import { addCityToUser } from '../actions/couchActions';
 
 class CityInputContainer extends Component {
 	state = {

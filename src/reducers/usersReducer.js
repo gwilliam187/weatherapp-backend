@@ -1,8 +1,12 @@
-const initialState = ['steven_klarens', 'wowowi'];
+import { SET_USERS } from '../actions/actionTypes';
 
-export default(state=[], action) => {
-	switch(action.type){
-		case "LOAD_USERS": return [...state, action.payload];
-		default: return initialState;
+const initialState = ['steven_klarens', 'wowowi', 'sandiaga_uno'];
+
+export default(state = initialState, action) => {
+	switch(action.type) {
+		case SET_USERS:
+			return action.payload;
+		default:
+			return state;
 	}
 }
