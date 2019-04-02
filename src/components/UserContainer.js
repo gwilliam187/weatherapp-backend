@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import UserInput from './UserInput';
+import UserInputContainer from './UserInputContainer';
+import UserButton from './UserButton';
 
 class UserContainer extends Component {
 	render() {
@@ -9,11 +10,11 @@ class UserContainer extends Component {
 				<div className='card'>
 					<div className='card-body'>
 						<h4 className='card-title'>Users</h4>
-						<UserInput />
+						<UserInputContainer />
 						<label>All Users</label>
 						<div className='list-group'>
-							<a href='#' className='list-group-item list-group-item-action'>steven_klarens</a>
-							<a href='#' className='list-group-item list-group-item-action'>wowowi</a>
+							<UserButton username='steven_klarens' />
+							<UserButton username='wowowi' />
 						</div>
 					</div>
 				</div>
