@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { viewUserCities } from '../actions/couchActions';
-
 class CityTableRow extends Component {
 	state = {
 		isEditing: false,
@@ -11,8 +9,7 @@ class CityTableRow extends Component {
 	};
 
 	componentWillMount(){
-		this.props.viewUserCities(this.props.selectedUser)
-		console.log(this.props.userCities)
+		
 	}
 
 	handleSwitchToEditButton = () => {
@@ -39,15 +36,11 @@ class CityTableRow extends Component {
 		this.setState({ cityNameVal: e.target.value });
 	};
 
-	renderViewRow() {
-		console.log(this.props.userCities)
-		if	(this.props.userCities.total_rows>0){
-			let el = [];
-			this.props.userCities.rows.map((city)=>{
-				el.push (
-					<tr key={city.key} className='d-flex'>
-					<td className='col-3 d-flex align-items-center'>{city.id}</td>
-					<td className='col-7 d-flex align-items-center'>{city.value}</td>
+	renderViewRow() {	
+			return (
+					<tr key={this.props.key} className='d-flex'>
+					<td className='col-3 d-flex align-items-center'>{this.props.id}</td>
+					<td className='col-7 d-flex align-items-center'>{this.props.cityName}</td>
 					<td className='col-2 d-flex justify-content-end'>
 						<button 
 								onClick={ this.handleSwitchToEditButton }
@@ -61,14 +54,7 @@ class CityTableRow extends Component {
 						</button>
 					</td>
 				</tr>
-				)
-			})
-			return el;
-		}else{
-			return(
-				<tr><td colSpan='4' style={{textAlign: "center"}}>No City Loaded Yet</td></tr>
-			)
-		}
+				);
 	}
 
 	renderEditRow() {
@@ -118,4 +104,4 @@ const mapStateToProps = state=>{
 	}
 }
 
-export default connect(mapStateToProps, { viewUserCities }) (CityTableRow);
+export default connect(mapStateToProps) (CityTableRow);
