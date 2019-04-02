@@ -2,7 +2,7 @@ import NodeCouchDb from 'node-couchdb';
 import axios from 'axios';
 
 import { setUsers } from './userActions';
-import { SET_USER_CITY, RESET_USER_CITY } from './actionTypes';
+import { SET_USER_CITY, RESET_USER_CITY, SET_USER_CITY_REVS } from './actionTypes';
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -94,3 +94,35 @@ export const updateCityToUser = (userName, cityRef, newCityObj)=>{
         }).then(()=>console.log("updated"), err=>console.log(err))
     })
 }
+
+export const fetchCityRevs = id => async (dispatch, getState) => {
+    const { selectedUser } = getState();
+    console.log(selectedUser);
+    id = encodeURIComponent(id);
+
+    const baseUrl = `http://${ couch_ip_addr }:5984/${ selectedUser }/${ id }`;
+    const url = `${ baseUrl }?revs_info=true`;
+
+    const res = await axios.get(url);
+    const availableRevs = res.data._revs_info.filter(currRev => {
+        return currRev.status === 'available';
+    });
+    console.log(availableRevs);
+
+    const cityRevsPromises = availableRevs.map(async currRev => {
+        const url = `${baseUrl}?rev=${ currRev.rev }`;
+        const res = await axios.get(url);
+        return res.data;
+    })
+
+    Promise.all(cityRevsPromises).then(values => {
+        dispatch(setCityRevs(values));
+    });
+}
+
+export const setCityRevs = cityRevs => {
+    return {
+        type: SET_USER_CITY_REVS,
+        payload: cityRevs
+    };
+};
