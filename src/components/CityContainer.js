@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 
 import CityInputContainer from './CityInputContainer';
 import CityTableRow from './CityTableRow';
+import {viewUserCities} from  '../actions/couchActions';
 
 class CityContainer extends Component {
-	renderCities() {
-		if(this.props.cities.length > 0) {
-			return this.props.cities.map(city => {
-				return <CityTableRow id={ city._id } cityName={ city.cityName } key={ city._id } />;
-			});
-		} else {
-			return <div>No cities</div>
-		}
-	}
+	// renderCities() {
+	// 	if(this.props.cities.total_rows>0) {
+	// 		return this.props.cities.map(city => {
+	// 			return <CityTableRow id={ city.id } cityName={ city.value } key={ city.id } />;
+	// 		});
+	// 	} else {
+	// 		return <tr><td colSpan='4' style={{textAlign: "center"}}>No City Loaded Yet</td></tr>
+	// 	}
+	// }
 
 	renderConditionally() {
 		if(this.props.selectedUser) {
@@ -39,7 +40,8 @@ class CityContainer extends Component {
 									</tr>
 								</thead>
 								<tbody>
-									{ this.renderCities() }
+									{ /*this.renderCities()*/ }
+									<CityTableRow />
 								</tbody>
 							</table>
 						</div>
@@ -59,8 +61,8 @@ class CityContainer extends Component {
 const mapStateToProps = state => {
 	return {
 		selectedUser: state.selectedUser,
-		cities: state.cities
+		cities: state.userCities
 	};
 };
 
-export default connect(mapStateToProps, null)(CityContainer);
+export default connect(mapStateToProps, {viewUserCities})(CityContainer);
