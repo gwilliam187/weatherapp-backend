@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { viewUserCities } from '../actions/couchActions';
-
 class CityTableRow extends Component {
 	state = {
 		isEditing: false,
@@ -12,8 +10,7 @@ class CityTableRow extends Component {
 	};
 
 	componentWillMount(){
-		this.props.viewUserCities(this.props.selectedUser)
-		console.log(this.props.userCities)
+		
 	}
 
 	handleSwitchToEditButton = () => {
@@ -153,4 +150,4 @@ const mapStateToProps = state=>{
 	}
 }
 
-export default connect(mapStateToProps, { viewUserCities }) (CityTableRow);
+export default connect(mapStateToProps) (CityTableRow);

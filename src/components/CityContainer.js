@@ -3,20 +3,23 @@ import { connect } from 'react-redux';
 
 import CityInputContainer from './CityInputContainer';
 import CityTableRow from './CityTableRow';
-import {viewUserCities} from  '../actions/couchActions';
+
+import { viewUserCities } from '../actions/couchActions';
+
 
 class CityContainer extends Component {
-	componentDidMount() {
-		console.log('mouted')
+	componentWillMount() {
+		this.props.viewUserCities(this.props.selectedUser)
+		console.log(this.props.cities)
 	}
 
 	renderCities() {
-		if(this.props.cities.length > 0) {
-			return this.props.cities.map(city => {
-				return <CityTableRow id={ city._id } cityName={ city.cityName } key={ city._id } />;
+		if(this.props.cities.total_rows > 0) {
+			return this.props.cities.rows.map(city => {
+				return <CityTableRow id={ city.id } cityName={ city.value } key={ city.key } />;
 			});
 		} else {
-			return <div>No cities</div>
+			return <tr><td colSpan='4' style={{textAlign: "center"}}>No Cities Loaded Yet</td></tr>
 		}
 	}
 
@@ -44,14 +47,13 @@ class CityContainer extends Component {
 									</tr>
 								</thead>
 								<tbody>
-									{ /*this.renderCities()*/ }
-									<CityTableRow />
+									{ this.renderCities() }
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-			);
+		);
 		} else {
 			return null;
 		}
