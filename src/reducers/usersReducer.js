@@ -1,8 +1,6 @@
 import { SET_USERS } from '../actions/actionTypes';
 
-const initialState = ['steven_klarens', 'wowowi', 'sandiaga_uno'];
-
-export default(state = initialState, action) => {
+export default(state = [], action) => {
 	switch(action.type) {
 		case SET_USERS:
 			return action.payload;
