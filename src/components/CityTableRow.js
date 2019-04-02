@@ -6,8 +6,8 @@ import { viewUserCities } from '../actions/couchActions';
 class CityTableRow extends Component {
 	state = {
 		isEditing: false,
-		idVal: 'Berlin, de',
-		cityNameVal: 'Berlin'
+		idVal: this.props.id,
+		cityNameVal: this.props.cityName
 	};
 
 	componentWillMount(){

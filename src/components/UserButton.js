@@ -4,10 +4,8 @@ import { connect } from 'react-redux';
 import { selectUser } from '../actions/selectedUserActions';
 
 class UserButton extends Component {
-
-	// TODO: Implement this
+	
 	handleOnClick = () => {
-		// console.log(`switch user to ${ this.props.username }`);
 		this.props.selectUser(this.props.username);
 	};
 

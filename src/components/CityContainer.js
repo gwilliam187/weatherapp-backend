@@ -5,6 +5,16 @@ import CityInputContainer from './CityInputContainer';
 import CityTableRow from './CityTableRow';
 
 class CityContainer extends Component {
+	renderCities() {
+		if(this.props.cities.length > 0) {
+			return this.props.cities.map(city => {
+				return <CityTableRow id={ city._id } cityName={ city.cityName } key={ city._id } />;
+			});
+		} else {
+			return <div>No cities</div>
+		}
+	}
+
 	renderConditionally() {
 		if(this.props.selectedUser) {
 			return (
@@ -29,7 +39,7 @@ class CityContainer extends Component {
 									</tr>
 								</thead>
 								<tbody>
-									<CityTableRow />
+									{ this.renderCities() }
 								</tbody>
 							</table>
 						</div>
@@ -48,7 +58,8 @@ class CityContainer extends Component {
 
 const mapStateToProps = state => {
 	return {
-		selectedUser: state.selectedUser
+		selectedUser: state.selectedUser,
+		cities: state.cities
 	};
 };
 
