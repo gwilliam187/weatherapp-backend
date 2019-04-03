@@ -5,7 +5,7 @@ import { setUsers } from './userActions';
 import { removeCity } from './citiesActions';
 import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY, ADD_CITY, MODIFY_CITY } from './actionTypes';
 
-const couch_ip_addr = "192.168.200.154";
+const couch_ip_addr = "128.199.140.182";
 
 const couch = new NodeCouchDb({
     host: couch_ip_addr,
@@ -13,7 +13,7 @@ const couch = new NodeCouchDb({
     port: 5984,
     auth:{
         user: 'admin',
-        password : 'password'
+        password : '!QAZxsw2'
     }
 })
 
