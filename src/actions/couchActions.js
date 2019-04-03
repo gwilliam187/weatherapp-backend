@@ -2,7 +2,8 @@ import NodeCouchDb from 'node-couchdb';
 import axios from 'axios';
 
 import { setUsers } from './userActions';
-import { SET_USER_CITY, RESET_USER_CITY } from './actionTypes';
+import { removeCity } from './citiesActions';
+import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS } from './actionTypes';
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -46,7 +47,7 @@ export const addUser = (userName)=>(dispatch)=>{
         couch.insert(userName, ddoc).then(()=>{
             console.log("design document created")
             dispatch({type: "ADD_USER", payload: userName})
-            window.location.reload();
+            //window.location.reload();
         }, err=>console.log(err))
     },
         err=>{
@@ -73,9 +74,12 @@ export const viewUserCities = (userName)=> (dispatch)=>{
     }, err=> console.log(err))
 }
 
-export const removeCityFromUser = (userName, cityRef)=>{
+export const removeCityFromUser = (userName, cityRef)=>(dispatch)=>{
     couch.get(userName, cityRef).then((data)=>{
-        couch.del(userName, cityRef, data.data._rev).then(()=>console.log("deleted"), err=>console.log(err))
+        couch.del(userName, cityRef, data.data._rev).then(()=>{
+            console.log("deleted"); 
+            dispatch({type: DELETE_CITY_SUCCESS})
+        }, err=>console.log(err))
     }, err=>console.log(err))
 }
 

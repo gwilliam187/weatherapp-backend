@@ -14,7 +14,7 @@ class CityContainer extends Component {
 	}
 
 	renderCities() {
-		if(this.props.cities.total_rows > 0) {
+		if(this.props.cities.total_rows > 0 ) {
 			return this.props.cities.rows.map(city => {
 				return <CityTableRow id={ city.id } cityName={ city.value } key={ city.key } />;
 			});
@@ -66,7 +66,8 @@ class CityContainer extends Component {
 const mapStateToProps = state => {
 	return {
 		selectedUser: state.selectedUser,
-		cities: state.userCities
+		cities: state.userCities,
+		cityDeleted: state.cityDeleted
 	};
 };
 

@@ -11,6 +11,7 @@ class UserContainer extends Component {
 	}
 
 	renderUserButtons() {
+		//console.log(this.props.users)
 		if(this.props.users.length > 0) {
 			return this.props.users.map(user => {
 				return <UserButton username={ user } key={ user } />;

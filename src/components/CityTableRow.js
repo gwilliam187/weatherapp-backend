@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { removeCityFromUser } from '../actions/couchActions';
+import { removeCity } from '../actions/citiesActions';
+
 class CityTableRow extends Component {
 	state = {
 		isEditing: false,
@@ -17,7 +20,8 @@ class CityTableRow extends Component {
 	};
 
 	handleDeleteButton = () => {
-
+		this.props.removeCityFromUser(this.props.selectedUser, this.state.idVal);
+		this.props.removeCity(this.state.idVal);
 	};
 
 	handleUpdateButton = () => {
@@ -104,4 +108,4 @@ const mapStateToProps = state=>{
 	}
 }
 
-export default connect(mapStateToProps) (CityTableRow);
+export default connect(mapStateToProps, {removeCityFromUser, removeCity}) (CityTableRow);
