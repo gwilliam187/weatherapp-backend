@@ -8,6 +8,12 @@ import { viewUserCities, removeUser } from '../actions/couchActions';
 
 
 class CityContainer extends Component {
+	componentDidUpdate() {
+		console.log('updating');
+		// this.props.viewUserCities(this.props.selectedUser)
+		// console.log(this.props.cities)
+	}
+
 	renderCities() {
 		if(this.props.cities.total_rows > 0 ) {
 			return this.props.cities.rows.map(city => {
