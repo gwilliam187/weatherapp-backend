@@ -15,18 +15,18 @@ export const addCity = city =>{
 }
 
 export const removeCity = cityRef => async(dispatch, getState)=> {
-	let theMainCityList = getState().userCities;
-	console.log(theMainCityList);
-	let theUpdatedCityList = Array();
-	theMainCityList.rows.map((city)=>{
-		if	(city.id!==cityRef){
-			theUpdatedCityList.push(city)
-		}
-	})
-	console.log(theUpdatedCityList)
-	const finalUpdatedCityList = {
-		total_rows: theUpdatedCityList.length,
-		rows: theUpdatedCityList
-	}
-	dispatch({type: REMOVE_CITY, payload: finalUpdatedCityList})
+	// let theMainCityList = getState().userCities;
+	// console.log(theMainCityList);
+	// let theUpdatedCityList = Array();
+	// theMainCityList.rows.map((city)=>{
+	// 	if	(city.id!==cityRef){
+	// 		theUpdatedCityList.push(city)
+	// 	}
+	// })
+	// console.log(theUpdatedCityList)
+	// const finalUpdatedCityList = {
+	// 	total_rows: theUpdatedCityList.length,
+	// 	rows: theUpdatedCityList
+	// }
+	dispatch({type: REMOVE_CITY, payload: cityRef})
 }

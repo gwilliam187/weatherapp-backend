@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { selectUser } from '../actions/selectedUserActions';
+import { viewUserCities } from '../actions/couchActions';
 
 class UserButton extends Component {
 	
 	handleOnClick = () => {
 		this.props.selectUser(this.props.username);
+		this.props.viewUserCities(this.props.username);
 	};
 
 	render() {
@@ -21,7 +23,8 @@ class UserButton extends Component {
 }
 
 const mapDispatchToProps = {
-	selectUser
+	selectUser,
+	viewUserCities
 };
 
 export default connect(null, mapDispatchToProps)(UserButton);

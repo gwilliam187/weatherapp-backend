@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { setUsers } from './userActions';
 import { removeCity } from './citiesActions';
-import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER } from './actionTypes';
+import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY } from './actionTypes';
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -78,8 +78,8 @@ export const viewUserCities = (userName)=> (dispatch)=>{
 export const removeCityFromUser = (userName, cityRef)=>(dispatch)=>{
     couch.get(userName, cityRef).then((data)=>{
         couch.del(userName, cityRef, data.data._rev).then(()=>{
-            console.log("deleted"); 
-            dispatch({type: DELETE_CITY_SUCCESS})
+            console.log("deleted");
+            dispatch({type: REMOVE_CITY, payload: cityRef})
         }, err=>console.log(err))
     }, err=>console.log(err))
 }

@@ -22,7 +22,7 @@ class CityTableRow extends Component {
 
 	handleDeleteButton = () => {
 		this.props.removeCityFromUser(this.props.selectedUser, this.state.idVal);
-		this.props.removeCity(this.state.idVal);
+		//this.props.removeCity(this.state.idVal);
 	};
 
 	handleUpdateButton = () => {
