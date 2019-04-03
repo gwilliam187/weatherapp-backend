@@ -4,6 +4,8 @@ export default(state = null, action) => {
 	switch(action.type) {
 		case SELECT_USER:
 			return action.payload;
+		// case UNSELECT_USER:
+		// 	return null;
 		default:
 			return state;
 	}

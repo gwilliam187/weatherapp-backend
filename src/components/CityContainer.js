@@ -11,6 +11,7 @@ class CityContainer extends Component {
 	componentWillMount() {
 		this.props.viewUserCities(this.props.selectedUser)
 		console.log(this.props.cities)
+
 	}
 
 	renderCities() {

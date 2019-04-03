@@ -4,15 +4,12 @@ import usersReducer from './usersReducer';
 import selectedUserReducer from './selectedUserReducer';
 // import citiesReducer from './citiesReducer';
 import cityRevsReducer from './cityRevsReducer';
-import userCityReducer from './userCityReducer'
-import deleteCitySuccessReducer from './deleteCitySuccessReducer';
+import cityReducer from './cityReducer'
 
 export default combineReducers({
 	users: usersReducer,
 	selectedUser: selectedUserReducer,
-	userCities: userCityReducer,
-	cityDeleted : deleteCitySuccessReducer,
+	userCities: cityReducer,
 	// cities: citiesReducer,
-	cityRevs: cityRevsReducer,
-	userCities: userCityReducer
+	cityRevs: cityRevsReducer
 });

@@ -1,4 +1,4 @@
-import { SELECT_USER } from '../actions/actionTypes';
+import { SELECT_USER} from '../actions/actionTypes';
 
 export const selectUser = user => {
 	return {

@@ -23,7 +23,8 @@ class UserButton extends Component {
 }
 
 const mapDispatchToProps = {
-	selectUser, viewUserCities
+	selectUser,
+	viewUserCities
 };
 
 export default connect(null, mapDispatchToProps)(UserButton);
