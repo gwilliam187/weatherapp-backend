@@ -13,6 +13,12 @@ class CityContainer extends Component {
 		console.log(this.props.cities)
 	}
 
+	componentDidUpdate() {
+		console.log('updating');
+		// this.props.viewUserCities(this.props.selectedUser)
+		// console.log(this.props.cities)
+	}
+
 	renderCities() {
 		if(this.props.cities.total_rows > 0 ) {
 			return this.props.cities.rows.map(city => {
