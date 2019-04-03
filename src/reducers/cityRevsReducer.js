@@ -7,7 +7,7 @@ import { SET_USER_CITY_REVS } from '../actions/actionTypes';
 
 export default(state = [], action) => {
 	switch(action.type) {
-		case 'SET_USER_CITY_REVS':
+		case SET_USER_CITY_REVS:
 			return action.payload;
 		default:
 			return state;
