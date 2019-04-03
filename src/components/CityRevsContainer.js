@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class CityRevsContainer extends Component {
-	
-	componentDidMount() {
-		// TODO: Fetch data for city here
-	}
 
 	handleOnClickBackButton = () => {
 		this.props.history.goBack();
@@ -25,7 +21,7 @@ class CityRevsContainer extends Component {
 				);
 			});
 		} else {
-			return <div>No revs</div>
+			return <tr><td colSpan='2' className='text-center'>No revs</td></tr>
 		}
 	}
 
