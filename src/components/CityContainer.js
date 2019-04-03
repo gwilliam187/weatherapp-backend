@@ -29,12 +29,13 @@ class CityContainer extends Component {
 				<div className='col-lg-9 CityContainer'>
 					<div className='card'>
 						<div className='card-body'>
-							<div className='d-flex mb-4'>
-								<h4 className='card-title mb-0 mr-auto'>Cities for { this.props.selectedUser }</h4>
-									<button className='btn btn-danger font-weight-bold align-self-end'>
-									<i className='fas fa-trash-alt mr-2'></i>
-									Delete user
-									</button>
+							<div className='d-flex flex-wrap mb-4'>
+								<h4 className='offset-lg-3 col-lg-6 card-title text-center mb-2 mb-lg-0'>Cities for { this.props.selectedUser }</h4>
+								<button 
+										className='col-lg-3 btn btn-danger font-weight-bold align-self-end'>
+										<i className='fas fa-trash-alt mr-2'></i>
+										Delete user
+								</button>
 							</div>
 							<CityInputContainer />
 							<table className='table'>
