@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CityInputContainer from './CityInputContainer';
 import CityTableRow from './CityTableRow';
 
-import { viewUserCities } from '../actions/couchActions';
+import { viewUserCities, removeUser } from '../actions/couchActions';
 
 
 class CityContainer extends Component {
@@ -29,6 +29,10 @@ class CityContainer extends Component {
 		}
 	}
 
+	handleRemove(){
+		this.props.removeUser(this.props.selectedUser);
+	}
+
 	renderConditionally() {
 		if(this.props.selectedUser) {
 			return (
@@ -37,7 +41,7 @@ class CityContainer extends Component {
 						<div className='card-body'>
 							<div className='d-flex flex-wrap mb-4'>
 								<h4 className='offset-lg-3 col-lg-6 card-title text-center mb-2 mb-lg-0'>Cities for { this.props.selectedUser }</h4>
-								<button 
+								<button onClick={()=>this.handleRemove()}
 										className='col-lg-3 btn btn-danger font-weight-bold align-self-end'>
 										<i className='fas fa-trash-alt mr-2'></i>
 										Delete user
@@ -78,4 +82,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, {viewUserCities})(CityContainer);
+export default connect(mapStateToProps, {viewUserCities, removeUser})(CityContainer);

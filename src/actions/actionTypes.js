@@ -3,6 +3,7 @@ export const SET_USERS = 'SET_USERS';
 
 // Selected User Actions
 export const SELECT_USER = 'SELECT_USER';
+export const REMOVE_USER = 'REMOVE_USER';
 
 // City Actions
 export const SET_CITIES = 'SET_CITIES';
