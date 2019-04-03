@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { setUsers } from './userActions';
 import { removeCity } from './citiesActions';
-import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY } from './actionTypes';
+import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY, ADD_CITY } from './actionTypes';
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -84,9 +84,16 @@ export const removeCityFromUser = (userName, cityRef)=>(dispatch)=>{
     }, err=>console.log(err))
 }
 
-export const addCityToUser = (userName, cityObj)=>{
+export const addCityToUser = (userName, cityObj)=>async(dispatch)=>{
     if  (cityObj.cityName && cityObj._id && cityObj.isPublic)
-        couch.insert(userName, cityObj).then(()=>console.log("inserted"), err=>console.log(err))
+        couch.insert(userName, cityObj).then(()=>{
+            console.log("inserted")
+            dispatch({type: ADD_CITY, payload: {
+                id : cityObj._id,
+                value: cityObj.cityName,
+                key: cityObj._id
+            } })
+        }, err=>console.log(err))
 }
 
 export const updateCityToUser = (userName, cityRef, newCityObj)=>{
