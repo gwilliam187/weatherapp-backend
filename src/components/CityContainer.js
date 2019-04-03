@@ -13,19 +13,13 @@ class CityContainer extends Component {
 		console.log(this.props.cities)
 	}
 
-	componentDidUpdate() {
-		console.log('updating');
-		// this.props.viewUserCities(this.props.selectedUser)
-		// console.log(this.props.cities)
-	}
-
 	renderCities() {
 		if(this.props.cities.total_rows > 0 ) {
 			return this.props.cities.rows.map(city => {
 				return <CityTableRow id={ city.id } cityName={ city.value } key={ city.key } />;
 			});
 		} else {
-			return <tr><td colSpan='4' style={{textAlign: "center"}}>No Cities Loaded Yet</td></tr>
+			return <tr><td colSpan='4' className='text-center'>No cities for this user</td></tr>
 		}
 	}
 

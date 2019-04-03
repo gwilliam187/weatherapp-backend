@@ -23,13 +23,13 @@ class UserContainer extends Component {
 
 	render() {
 		return(
-			<div className='col-lg-3 UserContainer'>
+			<div className='col-lg-3 pb-3 UserContainer'>
 				<div className='card'>
 					<div className='card-body'>
 						<h4 className='card-title'>Users</h4>
 						<UserInputContainer />
 						<label>All Users</label>
-						<div className='list-group'>
+						<div className='list-group flex-row flex-wrap'>
 							{ this.renderUserButtons() }
 						</div>
 					</div>

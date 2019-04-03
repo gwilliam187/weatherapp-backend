@@ -15,7 +15,7 @@ class UserButton extends Component {
 		return (
 			<button
 					onClick={ this.handleOnClick }
-					className='list-group-item list-group-item-action'>
+					className='col-12 col-md-6 col-lg-12 list-group-item list-group-item-action'>
 				{ this.props.username }
 			</button>
 		);
