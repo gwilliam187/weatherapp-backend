@@ -28,10 +28,16 @@ class CityInputContainer extends Component {
 
 	// TODO: Implement this
 	addCity = () => {
+		console.log("adding "+this.state.idVal)
 		if(this.state.idVal !== '' && this.state.cityNameVal !== '') {
 			console.log(`add city (${ this.state.idVal }) ${ this.state.cityNameVal }`);
+			const cityObj = {
+				_id: this.state.idVal,
+				cityName: this.state.cityNameVal,
+				isPublic: true
+			}
+			this.props.addCityToUser(this.props.selectedUser, cityObj)
 			this.setState({ idVal: '', cityNameVal: '' });
-			addCityToUser()
 		}
 	};
 
@@ -57,7 +63,7 @@ class CityInputContainer extends Component {
 							className='form-control' />
 				</div>
 				<div className='col-md-2 d-flex justify-content-end px-md-0'>
-					<button className='btn btn-primary font-weight-bold w-100'>
+					<button className='btn btn-primary font-weight-bold w-100' onClick={this.handleOnClick}>
 						<i className='fas fa-plus text-white mr-2'></i>
 						Add city
 					</button>
@@ -67,4 +73,10 @@ class CityInputContainer extends Component {
 	}
 }
 
-export default connect(null) (CityInputContainer);
+const mapStateToProps = (state)=>{
+	return{
+		selectedUser: state.selectedUser
+	}
+}
+
+export default connect(mapStateToProps, {addCityToUser}) (CityInputContainer);
