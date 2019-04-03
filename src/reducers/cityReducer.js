@@ -1,10 +1,10 @@
-import {SET_USER_CITY, REMOVE_CITY, UNSELECT_USER , ADD_CITY, SELECT_USER} from '../actions/actionTypes';
+import {SET_USER_CITY, REMOVE_CITY, MODIFY_CITY , ADD_CITY, SELECT_USER} from '../actions/actionTypes';
 
 /*
     City Obj = {
         _id: xxx,
-        cityName: xxx
-        isPublic: true
+        key: _id    
+        value: Cityname
     }
 */
 
@@ -13,6 +13,7 @@ export default(state=[], action)=>{
         case ADD_CITY: 
             let newRow = state.rows;
             newRow.push(action.payload);
+            
             return ({
                 total_rows : newRow.length,
                 rows: newRow
@@ -30,7 +31,18 @@ export default(state=[], action)=>{
                 total_rows : newState.length,
                 rows: newState
             })
-        
+        case MODIFY_CITY : 
+            //let rows = state.rows;
+            let rows = state.rows.map((row)=>{
+                if  (row.id===action.payload.id){
+                    return action.payload
+                }
+                return row
+            })
+            return ({
+                total_rows : rows.length,
+                rows: rows
+            })
         default: return state;
     }
 }

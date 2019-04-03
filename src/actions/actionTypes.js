@@ -16,6 +16,7 @@ export const ADD_CITY = 'ADD_CITY';
 export const SET_USER_CITY = 'SET_USER_CITY';
 export const RESET_USER_CITY = 'RESET_USER_CITY';
 export const REMOVE_CITY = 'REMOVE_CITY';
+export const MODIFY_CITY = 'MODIFY_CITY';
 
 // User City Revs Actions
 export const SET_USER_CITY_REVS = 'SET_USER_CITY_REVS';

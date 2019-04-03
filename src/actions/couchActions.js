@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { setUsers } from './userActions';
 import { removeCity } from './citiesActions';
-import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY, ADD_CITY } from './actionTypes';
+import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS, REMOVE_USER, REMOVE_CITY, ADD_CITY, MODIFY_CITY } from './actionTypes';
 
 const couch_ip_addr = "192.168.200.154";
 
@@ -69,7 +69,6 @@ export const removeUser = userName=>async(dispatch)=>{
 export const viewUserCities = (userName)=> (dispatch)=>{
     const viewURL = "_design/viewAll/_view/viewAll-index"
     couch.get(userName, viewURL).then((data)=>{
-        console.log(data.data)
         dispatch({type: RESET_USER_CITY})
         dispatch({type: SET_USER_CITY, payload: data.data})
     }, err=> console.log(err))
@@ -96,14 +95,21 @@ export const addCityToUser = (userName, cityObj)=>async(dispatch)=>{
         }, err=>console.log(err))
 }
 
-export const updateCityToUser = (userName, cityRef, newCityObj)=>{
+export const updateCityToUser = (userName, cityRef, newCityObj)=>async(dispatch)=>{
     couch.get(userName, cityRef).then((data)=>{
         couch.update(userName, {
             _id : cityRef,
             _rev : data.data._rev,
-            cityName: newCityObj.cityName,
-            isPublic : newCityObj.isPublic
-        }).then(()=>console.log("updated"), err=>console.log(err))
+            cityName: newCityObj.value,
+            isPublic : true
+        }).then(()=>{
+            console.log("updated")
+            dispatch({type: MODIFY_CITY, payload:{
+                id : newCityObj.id,
+                value: newCityObj.value,
+                key: newCityObj.value
+            }})
+        }, err=>console.log(err))
     })
 }
 

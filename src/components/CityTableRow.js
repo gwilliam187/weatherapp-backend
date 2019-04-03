@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { removeCityFromUser } from '../actions/couchActions';
+import { removeCityFromUser, updateCityToUser } from '../actions/couchActions';
 import { removeCity } from '../actions/citiesActions';
 
 class CityTableRow extends Component {
@@ -11,10 +11,6 @@ class CityTableRow extends Component {
 		idVal: this.props.id,
 		cityNameVal: this.props.cityName
 	};
-
-	componentWillMount(){
-		
-	}
 
 	handleSwitchToEditButton = () => {
 		this.setState({ isEditing: true });
@@ -26,7 +22,12 @@ class CityTableRow extends Component {
 	};
 
 	handleUpdateButton = () => {
-
+		let newCityObj = {
+			id: this.state.idVal,
+			key: this.state.idVal,
+			value: this.state.cityNameVal
+		}
+		this.props.updateCityToUser(this.props.selectedUser, this.state.idVal, newCityObj );
 	};
 
 	handleSwitchToViewButton = () => {
@@ -154,4 +155,4 @@ const mapStateToProps = state=>{
 	}
 }
 
-export default connect(mapStateToProps, {removeCityFromUser, removeCity}) (CityTableRow);
+export default connect(mapStateToProps, {removeCityFromUser, removeCity, updateCityToUser}) (CityTableRow);
