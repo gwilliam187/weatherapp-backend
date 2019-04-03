@@ -18,7 +18,6 @@ const couch = new NodeCouchDb({
 })
 
 export const viewAllUsers = () => async(dispatch)=>{
-    console.log("called")
     await axios.get("http://"+couch_ip_addr+":5984/_all_dbs").then((res)=>{
             let arr = Array();
             res.data.map((d)=>{
@@ -76,10 +75,18 @@ export const viewUserCities = (userName)=> (dispatch)=>{
 
 export const removeCityFromUser = (userName, cityRef)=>(dispatch)=>{
     couch.get(userName, cityRef).then((data)=>{
-        couch.del(userName, cityRef, data.data._rev).then(()=>{
+        couch.update(userName, {
+            _id : cityRef,
+            _rev : data.data._rev,
+            cityName: cityRef,
+            isPublic : true,
+            _deleted: true
+        }).then(()=>{
             console.log("deleted");
             dispatch({type: REMOVE_CITY, payload: cityRef})
-        }, err=>console.log(err))
+        }, err=>{
+            dispatch({type: REMOVE_CITY, payload: cityRef})
+        })
     }, err=>console.log(err))
 }
 
@@ -115,7 +122,6 @@ export const updateCityToUser = (userName, cityRef, newCityObj)=>async(dispatch)
 
 export const fetchCityRevs = id => async (dispatch, getState) => {
     const { selectedUser } = getState();
-    console.log(selectedUser);
     id = encodeURIComponent(id);
 
     const baseUrl = `http://${ couch_ip_addr }:5984/${ selectedUser }/${ id }`;
