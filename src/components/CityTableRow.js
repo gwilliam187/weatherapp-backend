@@ -33,10 +33,6 @@ class CityTableRow extends Component {
 		this.setState({ isEditing: false });
 	};
 
-	handleOnChangeId = e => {
-		this.setState({ idVal: e.target.value });
-	};
-
 	handleOnChangeCityName = e => {
 		this.setState({ cityNameVal: e.target.value });
 	};
