@@ -102,12 +102,7 @@ class CityTableRow extends Component {
 	renderEditRow() {
 		return (
 			<tr className='d-flex flex-wrap'>
-				<td className='col-3 d-flex pl-0 py-2'>
-					<input 
-							value={ this.state.idVal } 
-							onChange={ this.handleOnChangeId } 
-							className='form-control' />
-				</td>
+				<td className='col-3 d-flex align-items-center'>{ this.props.id }</td>
 				<td className='col-5 d-flex pl-0 py-2'>
 					<input 
 						value={ this.state.cityNameVal } 
