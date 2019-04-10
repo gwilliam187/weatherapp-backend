@@ -9,7 +9,7 @@ class UserInputContainer extends Component {
 
 	handleOnKeyDown = e => {
 		if(e.key === 'Enter') {
-			this.props.addUser();
+			this.add();
 		}
 	};
 
@@ -17,7 +17,6 @@ class UserInputContainer extends Component {
 
 	handleOnClick = e => { this.add() };
 
-	// TODO: Implement this
 	add = () => {
 		if(this.state.value !== '') {
 			this.props.addUser(this.state.value)
