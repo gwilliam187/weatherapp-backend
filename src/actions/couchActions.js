@@ -7,7 +7,8 @@ import { SET_USER_CITY, RESET_USER_CITY, DELETE_CITY_SUCCESS, SET_USER_CITY_REVS
 
 // const couch_ip_addr = "128.199.140.182";
 // const couch_ip_addr = "192.168.200.154"
-const couch_ip_addr = 'sgu.pdm-commsult.intranet';
+const couch_ip_addr = "sgu.pdm-commsult.intranet"
+
 
 const couch = new NodeCouchDb({
     host: couch_ip_addr,
