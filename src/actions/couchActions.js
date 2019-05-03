@@ -40,12 +40,13 @@ export const addUser = (userName)=>(dispatch)=>{
         const ddoc = {
             "_id": "_design/viewAll",
             "views": {
-              "viewAll-index": {
-                "map": "function (doc) {\n  emit(doc._id, doc.cityName);\n}"
-              }
+                "viewAll-index": {
+                    "map": "function (doc) {\n  emit(doc._id, {'_id': doc._id, '_rev': doc._rev, 'cityName': doc.cityName, 'isPublic': doc.isPublic, 'fromBackend': doc.fromBackend});\n}"
+                }
             },
-            "language": "javascript"
-          }
+            "language": "javascript",
+            "fromBackend": false
+        };
         couch.insert(userName, ddoc).then(()=>{
             console.log("design document created")
             dispatch({type: "ADD_USER", payload: userName})
@@ -72,7 +73,7 @@ export const viewUserCities = (userName)=> (dispatch)=>{
     const viewURL = "_design/viewAll/_view/viewAll-index"
     couch.get(userName, viewURL).then((data)=>{
         dispatch({type: RESET_USER_CITY})
-        dispatch({type: SET_USER_CITY, payload: data.data})
+        dispatch({ type: SET_USER_CITY, payload: data.data })
     }, err=> console.log(err))
 }
 
@@ -99,8 +100,8 @@ export const addCityToUser = (userName, cityObj)=>async(dispatch)=>{
             console.log("inserted")
             dispatch({type: ADD_CITY, payload: {
                 id : cityObj._id,
-                value: cityObj.cityName,
-                key: cityObj._id
+                key: cityObj._id,
+                value: cityObj
             } })
         }, err=>console.log(err))
 }

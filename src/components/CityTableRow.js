@@ -9,7 +9,7 @@ class CityTableRow extends Component {
 	state = {
 		isEditing: false,
 		idVal: this.props.id,
-		cityNameVal: this.props.cityName
+		cityNameVal: this.props.city.cityName
 	};
 
 	handleSwitchToEditButton = () => {
@@ -42,7 +42,7 @@ class CityTableRow extends Component {
 		return (
 			<tr className='d-flex flex-wrap'>
 				<td className='col-3 d-flex align-items-center'>{ this.props.id }</td>
-				<td className='col-5 d-flex align-items-center'>{ this.props.cityName }</td>
+				<td className='col-5 d-flex align-items-center'>{ this.props.city.cityName }</td>
 				<td className='col-4 d-flex justify-content-end'>
 					<button 
 							onClick={ this.handleSwitchToEditButton }
